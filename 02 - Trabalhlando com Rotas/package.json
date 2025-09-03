@@ -1,0 +1,15 @@
+{
+  "name": "02---trabalhlando-com-rotas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --import=tsx --watch src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tsx": "^4.20.5"
+  }
+}

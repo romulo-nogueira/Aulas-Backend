@@ -3,6 +3,16 @@ const express = require('express');
 // Criando Servidor
 const app = express();
 
-const port = 3000;
+app.get('/', (req,res)=>{
+    const mensage ="Seja bem vindo!";
+    res.status(200).send(mensage)
 
-app.listen(port, () => console.log(`Servidor rodando no end: http://localhost:${port} `));
+})
+
+app.use((req, res)=>{
+    const mensage = "Erro 404 - Página não encontrada"
+    res.status(404).send(mensage)
+})
+
+const port = 3000;
+app.listen(port, () => console.log(`☁ Endereco: http://localhost:${port} `));

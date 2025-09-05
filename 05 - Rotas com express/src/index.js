@@ -11,7 +11,7 @@ app.set('json spaces', 2);
 
 app.use(express.static(path.join(__dirname,'public')))
 
-//Rotos do sistema
+//Rotas do sistema
 app.use(routes)
 
 //Rota servidor

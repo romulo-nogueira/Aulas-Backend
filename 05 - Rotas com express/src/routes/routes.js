@@ -20,3 +20,23 @@ routes.get('/contatos/dados', (req, res) =>{
 
     res.json(dados);
 })
+
+/* Rotas Dinâmicas */
+
+//1° Parâmentro de Rotas
+
+routes.get('/usuarios/:id', (req, res)=> {
+    /* const id = req.params.id; */
+    const {id} =req.params;
+    const mensage = `Você esta acessando o usuario de indentificador nº ${id}`;
+    res.status(201).send(mensage)
+})
+
+// 2º Query Strings
+
+routes.get("/produtos", (req, res) =>{
+    /* const categoria = req.query.categoria */
+    const {categoria} = req.query;
+    const mensage = `Exibindo produto da categoria: ${categoria}`;
+    res.status(201).send(mensage)
+})

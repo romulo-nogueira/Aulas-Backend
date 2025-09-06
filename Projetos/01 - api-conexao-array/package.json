@@ -1,0 +1,19 @@
+{
+  "name": "01---api-conexao-array",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node --import=tsx --watch src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tsx": "^4.20.5"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0"
+  }
+}

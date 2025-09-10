@@ -37,6 +37,14 @@ routes.post('/filmes', (req, res) => {
         return res.status(400).send('Os campos não podem ser vazios')
    }
 
+
+   //Validação de duplicidade 
+   const filmesExiste =filmes.find(item => item.id == id || 
+    item.titulo.toLowerCase() == titulo.toLowerCase())
+
+    if(filmesExiste){
+        return res.status(400).send("Filmes já exitente");
+    }
     
 
    filmes.push({id, titulo, ano, categoria});
@@ -63,6 +71,20 @@ routes.put('/filmes/:id', (req, res) =>{
     updateFilme.categoria = categoria;
 
     res.status(200).send('Filme atualizado com sucesso!')
+})
+
+// Criando rota para deletar dados
+
+routes.delete("/filmes/:id", (req, res) =>{
+    const {id} = req.params
+    const deletarFilmes = filmes.findIndex(item => item.id == id)
+
+    if(deletarFilmes === -1){
+        return res.status(404).send("404 - Filme não existe")
+    }
+
+    filmes.splice(deletarFilmes, 1);
+    res.status(200).send("Filme excluido com sucesso");
 })
 
 export default routes;

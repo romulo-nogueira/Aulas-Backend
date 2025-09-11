@@ -3,7 +3,7 @@
     const server = express.Router();
 
     server.get('/', (req, res) =>{
-        const mensage = "Servidor rodando com sucesso";
+        const mensage = "Servidor do PROJETO 2 rodando com sucesso";
         res.status(200).send(mensage)
     })
     server.use((req, res)=>{

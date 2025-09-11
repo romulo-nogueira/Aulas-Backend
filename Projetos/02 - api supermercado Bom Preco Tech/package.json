@@ -1,9 +1,9 @@
 {
   "name": "02---api-supermercado-bom-preco-tech",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --import=tsx --watch src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
     "tsx": "^4.20.5"
   },
   "dependencies": {
+    "dotenv": "^17.2.2",
     "express": "^5.1.0"
   }
 }

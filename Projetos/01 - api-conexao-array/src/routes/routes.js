@@ -12,6 +12,8 @@ routes.get('/filmes', (req, res) =>{
     res.status(200).send("Filme visualizado com sucesso! ")
 })
 
+// Busca o filme pelo ID
+
 routes.get('/filmes/:id', (req, res) => {
     const id = req.params.id;
     // O find tem a lógica de procurar o primeiro elemento que satisfaça a condição

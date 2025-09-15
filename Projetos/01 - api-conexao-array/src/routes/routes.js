@@ -35,7 +35,7 @@ routes.post('/filmes', (req, res) => {
 
    //Validação de campos Obrigatorios
 
-   if(!id || !titulo || !ano || !categoria || id.toString().trim() == "" || titulo.trim() == "" || ano.toString().trim() == "" || categoria.trim() == ""){
+   if(!id || !titulo || !ano || !categoria /* || id.toString().trim() == "" || titulo.trim() == "" || ano.toString().trim() == "" || categoria.trim() == "" */){
         return res.status(400).send('Os campos não podem ser vazios')
    }
 
@@ -66,6 +66,7 @@ routes.put('/filmes/:id', (req, res) =>{
     }
     if(!titulo || titulo.trim() ===""){
         res.status(400).send('Titulo não pode ser vazio')
+        return res.status(400).send('Titulo não pode ser vazio');
     }
 
     updateFilme.titulo = titulo;
@@ -77,7 +78,7 @@ routes.put('/filmes/:id', (req, res) =>{
 
 // Criando rota para deletar dados
 
-routes.delete("/filmes/:id", (req, res) =>{
+routes.delete('/filmes/:id', (req, res) =>{
     const {id} = req.params
     const deletarFilmes = filmes.findIndex(item => item.id == id)
 
@@ -89,4 +90,5 @@ routes.delete("/filmes/:id", (req, res) =>{
     res.status(200).send("Filme excluido com sucesso");
 })
 
-export default routes;
+/* export default routes; */
+module.exports = routes;

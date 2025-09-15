@@ -15,7 +15,7 @@ routes.get('/produtos', (req, res) =>{
 
 routes.get('/produtos/:id', (req, res) => {
     const {id} = req.params;
-    const produto = produtos.find(item => item.id ==id);
+    const produto = produtos.find(item => item.id === id);
 
     if(!produto){
         return res.status(404).send("Erro 404 - Produto não encontrado")
@@ -36,11 +36,11 @@ routes.get('/filtro', (req, res) => {
     // Filtra por categoria
 
     if(categoria){
-        produtosFiltrados = produtosFiltrados.filter(item => item.categoria.toLowerCase() === categoria.toLocaleLowerCase());
+        produtosFiltrados = produtosFiltrados.filter(item => item.categoria.toLowerCase() === categoria.toLowerCase());
     }
     // Filtra por nome
    if(nome){
-    produtosFiltrados = produtosFiltrados.filter(item => item.nome.toLocaleLowerCase() === nome.toLocaleLowerCase());
+    produtosFiltrados = produtosFiltrados.filter(item => item.nome.toLowerCase() === nome.toLowerCase());
    }
 
     if(produtosFiltrados.length === 0){
@@ -58,10 +58,32 @@ routes.post('/produtos',(req, res) => {
     let {id, nome, preco, categoria} = req.body;
     preco = Number(preco).toFixed(2);
 
+    //Validação de campos obrigatorios
+    if(!id || !nome || !preco || !categoria || id.toString().trim() =="" || nome.trim() == "" || preco.trim() == "" || categoria.trim() ==""){
+        return res.status(400).send("Todos os campos precisam ser preenchidos")
+    }
 
-    produtos.push({id, nome, preco, categoria});
+    //validação de duplicidade por ID
+
+    const produdoExistente = produtos.find(item => item.id ==id);
+    if(produdoExistente){
+        return res.status(400).send("Produto já cadastrado!")
+    }
+    produtos.push({id:Number(id), nome:nome.trim(), preco, categoria:categoria.trim()});
     res.status(201).send("Produto cadastrado com sucesso!");
-})  
+}) 
+
+routes.delete('/produtos/:id', (req, res) => {
+    const {id} = req.params
+    const excluirProduto = produtos.findIndex(item => item.id == id)
+
+    if(excluirProduto === -1){
+        return res.status(400).send("404 - produto não encontrado" )
+    }
+
+    produtos.splice(excluirProduto, 1);
+    res.status(200).send("Produto exluido com sucesso!")
+})
 
 
 module.exports = routes; // Perguntar para o professor hoje

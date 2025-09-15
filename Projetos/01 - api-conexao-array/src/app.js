@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
-const { default: server} = require('./routes/server.js');
-const { default: routes } = require('./routes/routes.js');
+const  routes = require('./routes/routes.js');
+const server = require('./routes/server.js');
+
 
 const app = express();
 app.use(express.json());

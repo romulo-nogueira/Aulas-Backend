@@ -73,6 +73,28 @@ routes.post('/produtos',(req, res) => {
     res.status(201).send("Produto cadastrado com sucesso!");
 }) 
 
+//Criando metodo de atualizacao
+
+routes.put('/produtos/:id', (req, res) =>{
+    const {id} = req.params;
+    const {nome, preco, categoria} = req.body;
+    const updadeProdutos = produtos.find(item => item.id);
+
+    if(!updadeProdutos){
+        return res.status(404).send(`Erro 404 - Produto não encontrado` )
+    }
+    if(!nome || nome.trim() === ""){
+        res.status(400).send('Produto não pode ser vazio')
+        return res.status(400).send('Produto não pode ser vazio');
+    }
+    updadeProdutos.nome = nome;
+    updadeProdutos.preco = preco;
+    updadeProdutos.categoria = categoria;
+
+    res.status(200).send('Produto atualizado com sucesso!')
+})
+
+ // Rota para deletar
 routes.delete('/produtos/:id', (req, res) => {
     const {id} = req.params
     const excluirProduto = produtos.findIndex(item => item.id == id)

@@ -22,7 +22,7 @@ const api ={
             body:JSON.stringify(tarefa)
         });    
     } catch (error) {
-        alert("Erro ao cadastrar novo pet");
+        alert("Erro ao cadastrar nova tarefa");
         throw error;
     }
     

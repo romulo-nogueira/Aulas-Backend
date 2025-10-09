@@ -4,7 +4,7 @@ const api = {
 
     async obterTarefa() {
         try {
-            const response = await fetch('http://localhost:3000');
+            const response = await fetch('http://localhost:3000/tarefas');
             return await response.json();
         } catch (error) {
             alert("Erro ao fazer requisição");
@@ -14,7 +14,7 @@ const api = {
 
     async adicionarTarefa(tarefa) {
         try {
-            const response = await fetch('http://localhost:3000', {
+            const response = await fetch('http://localhost:3000/tarefas', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -34,7 +34,7 @@ const api = {
     // 1 passo -  buscando o id
     async buscarId(id) {
         try {
-            const response = await fetch(`http://localhost:3000/tarefa/${id}`);
+            const response = await fetch(`http://localhost:3000/tarefas/${id}`);
             return await response.json();
 
         } catch (error) {
@@ -47,7 +47,7 @@ const api = {
 
     async atualizarTarefa(tarefa) {
         try {
-            const response = await fetch(`http://localhost:3000/tarefa/${tarefa.id}`, {
+            const response = await fetch(`http://localhost:3000/tarefas/${tarefa.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -65,9 +65,9 @@ const api = {
 
     async deletarTarefa(id) {
         try {
-            const response = await fetch(`http://localhost:3000/tarefa/${id}`, {
+            const response = await fetch(`http://localhost:3000/tarefas/${id}`, {
                 method: "DELETE"
-            })
+            });
             return await response.json()
         } catch (error) {
             alert("Erro ao deletar tarefa")

@@ -1,10 +1,10 @@
-const { jsx } = require("react/jsx-runtime");
 
-const api ={
 
-    async obterTarefa(){
+const api = {
+
+    async obterTarefa() {
         try {
-            const response = await fetch('http://localhost/3000');
+            const response = await fetch('http://localhost:3000');
             return await response.json();
         } catch (error) {
             alert("Erro ao fazer requisição");
@@ -12,30 +12,31 @@ const api ={
         }
     },
 
-    async adicionarTarefa(tarefa){
-    try {
-        const response = await fetch('http://localhost/3000', {
-            method: "POST",
-            headers:{
-                "Content-Type":"application.json"
-            },
-            body:JSON.stringify(tarefa)
-        });    
-    } catch (error) {
-        alert("Erro ao cadastrar nova tarefa");
-        throw error;
-    }
-    
+    async adicionarTarefa(tarefa) {
+        try {
+            const response = await fetch('http://localhost:3000', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(tarefa)
+            });
+            return await response.json()
+        } catch (error) {
+            alert("Erro ao cadastrar nova tarefa");
+            throw error;
+        }
+
     },
 
     //Atualizando dos dados
 
     // 1 passo -  buscando o id
-    async buscarId(id){
+    async buscarId(id) {
         try {
-            const response = await fetch(`http://localhost/3000/tarefa/${id}`);
+            const response = await fetch(`http://localhost:3000/tarefa/${id}`);
             return await response.json();
-            
+
         } catch (error) {
             alert("Falha ao buscar ID");
             throw error;
@@ -43,15 +44,15 @@ const api ={
     },
 
     // 2 passo - atulizando os dados
-     
-    async atualizarTarefa(tarefa){
+
+    async atualizarTarefa(tarefa) {
         try {
-            const response = await fetch (`http://localhost/3000/tarefa/${tarefaid}`, {
-                method:"PUT",
+            const response = await fetch(`http://localhost:3000/tarefa/${tarefa.id}`, {
+                method: "PUT",
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type": "application/json"
                 },
-                body:JSON.stringify(tarefa)
+                body: JSON.stringify(tarefa)
             });
             return await response.json()
         } catch (error) {
@@ -62,10 +63,10 @@ const api ={
 
     // Deletando tarefa
 
-    async deletarTarefa(id){
+    async deletarTarefa(id) {
         try {
-            const response = await fetch(`http://localhost/3000/tarefa/${id}`,{
-                method:"DELETE"
+            const response = await fetch(`http://localhost:3000/tarefa/${id}`, {
+                method: "DELETE"
             })
             return await response.json()
         } catch (error) {
